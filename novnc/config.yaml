@@ -17,7 +17,6 @@ ingress_entry: ingress.html
 #ingress_port: 8080
 #ingress_entry: novnc/vnc.html?resize=remote&path=novnc/websockify
 ports:
-  40850/tcp: null
   5900/tcp: null
   13011/tcp: 13011
 map:
