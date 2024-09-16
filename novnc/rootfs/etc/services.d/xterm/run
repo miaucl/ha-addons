@@ -1,8 +1,7 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Start x11vnc service
+# Start xterm service
 # ==============================================================================
-
-bashio::log.info "Starting VNC server..."
-x11vnc -forever -shared \
-    &> /dev/null
+MESSAGE=$(bashio::config 'message')
+bashio::log.info "Starting yterm service..."
+xterm -e echo "${MESSAGE}"

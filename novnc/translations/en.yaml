@@ -4,4 +4,4 @@ configuration:
     description: The message that will be printed to the log when starting this example add-on.
 network:
   5900/TCP: The VNC port
-  13011/TCP: The debug port
+  13011/TCP: The chromium debug port

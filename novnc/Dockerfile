@@ -11,32 +11,15 @@ RUN \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         curl \
-        dwm \
-        iproute2 \
-        iputils-ping \
-        kmod \
-        libcap2-bin \
-        libqt5core5a \
-        libqt5gui5 \
-        libqt5network5 \
-        libqt5serialport5 \
-        libqt5sql5 \
-        libqt5websockets5 \
-        libqt5widgets5 \
-        libqt5qml5 \
-        lsof \
-        netcat-traditional \
+        git \
+        net-tools \
         nginx \
         novnc \
-        sqlite3 \
-        tigervnc-common \
-        tigervnc-standalone-server \
-        udev \
-        wget \
         xfonts-base \
         xfonts-scalable \
         x11vnc \
         xvfb \
+        fluxbox \
         xterm \
     && rm -rf /var/lib/apt/lists/*
 

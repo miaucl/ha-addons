@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: noVNC
-version: "1.0.0a8"
+version: "1.0.0a9"
 slug: novnc
 description: GUI of bare debian via noVNC
 panel_icon: "mdi:remote-desktop"

@@ -1,8 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Start x11vnc service
+# Start fluxbox service
 # ==============================================================================
-
-bashio::log.info "Starting VNC server..."
-x11vnc -forever -shared \
-    &> /dev/null
+bashio::log.info "Starting fluxbox service..."
+fluxbox &> /dev/null
