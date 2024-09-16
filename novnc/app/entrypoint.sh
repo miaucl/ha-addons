@@ -16,10 +16,4 @@ case $RUN_XTERM in
     ;;
 esac
 
-declare ingress_entry
-ingress_entry=$(bashio::addon.ingress_entry)
-echo $ingress_entry
-sed -i "s#websockify#${ingress_entry#?}/novnc/websockify#g" /usr/share/novnc/vnc_lite.html
-cat /usr/share/novnc/vnc_lite.html
-
 exec supervisord -c /app/supervisord.conf

@@ -33,8 +33,6 @@ RUN set -ex; \
         /var/tmp/* \
         /tmp/*
 
-ENV DISPLAY=:99
-
 # Setup demo environment variables
 ENV HOME=/root \
     DEBIAN_FRONTEND=noninteractive \
