@@ -2,12 +2,13 @@
 ARG BUILD_ARCH
 ARG BUILD_VERSION
 
+FROM ghcr.io/linuxserver/baseimage-kasmvnc:${BUILD_ARCH}-debianbookworm
+
 LABEL \
   io.hass.version="${BUILD_VERSION}" \
   io.hass.type="addon" \
   io.hass.arch="${BUILD_ARCH}"
 
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:${BUILD_ARCH}-debianbookworm
 
 # title
 ENV TITLE=Chromium
