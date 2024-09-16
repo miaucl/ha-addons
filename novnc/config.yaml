@@ -1,11 +1,12 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: noVNC
-version: "1.0.0a6"
+version: "1.0.0a7"
 slug: novnc
 description: GUI of bare debian via noVNC
 panel_icon: "mdi:remote-desktop"
 apparmor: false
 panel_admin: false
+codenotary: cyrill.raccaud+ha@gmail.com
 url: "https://github.com/miaucl/ha-addons/tree/main/novnc"
 arch:
   - aarch64

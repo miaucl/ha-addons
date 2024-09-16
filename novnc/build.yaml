@@ -7,3 +7,6 @@ labels:
   org.opencontainers.image.description: "GUI of bare debian via noVNC."
   org.opencontainers.image.source: "https://github.com/miaucl/ha-addons"
   org.opencontainers.image.licenses: "Apache License 2.0"
+codenotary: no
+codenotary.signer: cyrill.raccaud+ha@gmail.com
+codenotary.base_image: notary@home-assistant.io
