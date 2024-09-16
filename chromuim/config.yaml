@@ -1,0 +1,26 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: Chromium
+version: "1.0.0a0"
+slug: chromium
+description: Chromium Browser based on kasmvnc
+panel_icon: "mdi:google-chrome"
+apparmor: false
+panel_admin: false
+url: "https://github.com/miaucl/ha-addons/tree/main/chromium"
+arch:
+  - aarch64
+  - amd64
+init: false
+ingress: true
+ingress_port: 3000
+ports:
+  3000/tcp: null
+  3001/tcp: null
+  13011/tcp: 13011
+map:
+  - share:rw
+options:
+  message: "Hello world..."
+schema:
+  message: "str?"
+image: "ghcr.io/miaucl/{arch}-chromium"
