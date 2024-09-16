@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start app service
+# ==============================================================================
+
+bashio::log.info "Starting app..."
+
+exec supervisord -c /app/supervisord.conf
