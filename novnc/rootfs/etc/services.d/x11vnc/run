@@ -4,5 +4,4 @@
 # ==============================================================================
 
 bashio::log.info "Starting VNC server..."
-x11vnc -forever -shared \
-    &> /dev/null
+x11vnc -forever -shared

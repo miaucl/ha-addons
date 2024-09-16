@@ -33,3 +33,5 @@ ENV HOME=/root \
     DISPLAY_HEIGHT=768
 
 COPY rootfs /
+
+CMD ["xterm"]

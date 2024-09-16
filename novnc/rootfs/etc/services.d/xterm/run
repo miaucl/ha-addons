@@ -4,4 +4,4 @@
 # ==============================================================================
 MESSAGE=$(bashio::config 'message')
 bashio::log.info "Starting xterm service..."
-xterm -e echo "${MESSAGE}"
+xterm
