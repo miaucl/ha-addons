@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Chromium
-version: "1.0.0a0"
+version: "1.0.0a1"
 slug: chromium
 description: Chromium Browser based on kasmvnc
 panel_icon: "mdi:google-chrome"
@@ -19,6 +19,9 @@ ports:
   13011/tcp: 13011
 map:
   - share:rw
+  - type: data
+    path: /config
+tmpfs: true
 options:
   message: "Hello world..."
 schema:
