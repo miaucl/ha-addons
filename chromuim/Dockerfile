@@ -1,8 +1,9 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
+ARG BUILD_FROM
 ARG BUILD_ARCH
 ARG BUILD_VERSION
 
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:${BUILD_ARCH}-debianbookworm
+FROM ${BUILD_FROM}
 
 LABEL \
   io.hass.version="${BUILD_VERSION}" \
