@@ -16,4 +16,9 @@ case $RUN_XTERM in
     ;;
 esac
 
+INGRESS_ENTRY=${INGRESS_ENTRY:-/}
+
+sed -i "s#websockify#${INGRESS_ENTRY#?}/novnc/websockify#g" /usr/share/novnc/vnc_lite.html
+sed -i '/^\s*allow\s*172\.30\.32\.2\s*;/d; /^\s*deny\s*all\s*;/d' /etc/nginx/nginx.conf
+
 exec supervisord -c /app/supervisord.conf
