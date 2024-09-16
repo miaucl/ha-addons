@@ -8,11 +8,11 @@ apparmor: false
 panel_admin: false
 url: "https://github.com/miaucl/ha-addons/tree/main/novnc"
 arch:
-  - armhf
-  - armv7
+  # - armhf
+  # - armv7
   - aarch64
   - amd64
-  - i386
+  # - i386
 init: false
 ingress: true
 ingress_port: 8080
