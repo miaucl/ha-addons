@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start x11vnc service
+# ==============================================================================
+
+bashio::log.info "Starting VNC server..."
+x11vnc -forever -shared -rfbport 5900 \
+    &> /dev/null

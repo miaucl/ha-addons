@@ -35,6 +35,8 @@ RUN \
         wget \
         xfonts-base \
         xfonts-scalable \
+        x11vnc \
+        xvfb \
         xterm \
     && rm -rf /var/lib/apt/lists/*
 
