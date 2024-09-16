@@ -1,0 +1,12 @@
+services:
+  chromium:
+    build: .
+    args:
+      BUILD_FROM: ghcr.io/linuxserver/baseimage-kasmvnc:amd64-debianbookworm
+      BUILD_ARCH: amd64
+      BUILD_VERSION: local
+    container_name: chromium
+    ports:
+      - 3000:3000
+      - 3001:3001
+      - 13011:13011
