@@ -1,0 +1,12 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
+build_from:
+  aarch64: "debian:bullseye"
+  amd64: "debian:bullseye"
+  armhf: "debian:bullseye"
+  armv7: "debian:bullseye"
+  i386: "debian:bullseye"
+labels:
+  org.opencontainers.image.title: "Home Assistant Add-on: noVNC"
+  org.opencontainers.image.description: "GUI of bare debian via noVNC."
+  org.opencontainers.image.source: "https://github.com/miaucl/ha-addons"
+  org.opencontainers.image.licenses: "Apache License 2.0"
