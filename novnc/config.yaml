@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: noVNC
-version: "1.0.0a13"
+version: "1.0.0a14"
 slug: novnc
 description: GUI of bare debian via noVNC
 panel_icon: "mdi:remote-desktop"
@@ -16,6 +16,7 @@ ingress: true
 ingress_entry: ingress.html
 ports:
   5900/tcp: null
+  5901/tcp: 5901 # temp
   13011/tcp: 13011
 map:
   - share:rw
