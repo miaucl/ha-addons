@@ -11,11 +11,15 @@ arch:
   - aarch64
   - amd64
 init: false
-ingress: true # novnc/vnc_lite.html?scale=yes
-ingress_port: 8080
-ingress_entry: novnc/vnc.html?resize=remote&path=novnc/websockify
+ingress: true
+ingress_entry: ingress.novnc/vnc.html
+# novnc/vnc_lite.html?scale=yes
+#ingress_port: 8080
+#ingress_entry: novnc/vnc.html?resize=remote&path=novnc/websockify
 ports:
-  8080/tcp: 8080
+  40850/tcp: null
+  5900/tcp: null
+  8081/tcp: null
   13011/tcp: 13011
 map:
   - share:rw

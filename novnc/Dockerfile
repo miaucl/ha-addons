@@ -1,46 +1,41 @@
-# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-ARG BUILD_VERSION BUILD_ARCH BUILD_FROM
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-FROM ${BUILD_FROM}
-
-LABEL \
-    io.hass.version="${BUILD_VERSION}" \
-    io.hass.type="addon" \
-    io.hass.arch="${BUILD_ARCH}"
-
-
-# Install git, supervisor, VNC, & X11 packages
-RUN set -ex; \
-    apt-get update; \
-    apt-get install -y \
-        bash \
-        fluxbox \
-        git \
-        net-tools \
+# Install noVNC dependencies
+ARG BUILD_ARCH
+RUN \
+    set -x \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        dwm \
+        iproute2 \
+        iputils-ping \
+        kmod \
+        libcap2-bin \
+        libqt5core5a \
+        libqt5gui5 \
+        libqt5network5 \
+        libqt5serialport5 \
+        libqt5sql5 \
+        libqt5websockets5 \
+        libqt5widgets5 \
+        libqt5qml5 \
+        lsof \
+        netcat-traditional \
+        nginx \
         novnc \
-        supervisor \
-        x11vnc \
+        sqlite3 \
+        tigervnc-common \
+        tigervnc-standalone-server \
+        udev \
+        wget \
+        xfonts-base \
+        xfonts-scalable \
         xterm \
-        xvfb; \
-    apt-get autoclean && \
-    rm -rf \
-        /config/.cache \
-        /var/lib/apt/lists/* \
-        /var/tmp/* \
-        /tmp/*
+    && rm -rf /var/lib/apt/lists/*
 
-# Setup demo environment variables
-ENV HOME=/root \
-    DEBIAN_FRONTEND=noninteractive \
-    LANG=en_US.UTF-8 \
-    LANGUAGE=en_US.UTF-8 \
-    LC_ALL=C.UTF-8 \
-    DISPLAY=:0.0 \
-    DISPLAY_WIDTH=1024 \
-    DISPLAY_HEIGHT=768 \
-    RUN_XTERM=yes \
-    RUN_FLUXBOX=yes
-COPY ./app /app
-CMD ["/app/entrypoint.sh"]
-EXPOSE 8080
+COPY rootfs /
