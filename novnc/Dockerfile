@@ -33,7 +33,7 @@ ENV HOME=/root \
     DISPLAY_WIDTH=1024 \
     DISPLAY_HEIGHT=768
 
-#COPY rootfs /
+COPY rootfs /
 COPY app /app
 ENTRYPOINT "/app/entrypoint.sh"
 
