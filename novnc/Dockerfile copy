@@ -22,13 +22,18 @@ RUN set -ex; \
         supervisor \
         x11vnc \
         xterm \
-        xvfb; \
+        xvfb \
+        chromium \
+        chromium-l10n \
+        socat; \
     apt-get autoclean && \
     rm -rf \
         /config/.cache \
         /var/lib/apt/lists/* \
         /var/tmp/* \
         /tmp/*
+
+ENV DISPLAY=:99
 
 # Setup demo environment variables
 ENV HOME=/root \

@@ -1,3 +1,3 @@
 # Home Assistant Add-on: noVNC
 
-## How to use
+There is not much to do here, feel free and enjoy the debian playground :)
