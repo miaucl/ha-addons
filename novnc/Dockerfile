@@ -35,6 +35,6 @@ ENV HOME=/root \
 
 COPY rootfs /
 COPY app /app
-ENTRYPOINT "/app/entrypoint.sh"
+ENTRYPOINT "/app/bashio-entrypoint.sh"
 
 #CMD ["bash", "-c", "echo 'Running my app'; sleep infinity"]
