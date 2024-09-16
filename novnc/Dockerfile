@@ -21,6 +21,7 @@ RUN \
         xvfb \
         fluxbox \
         xterm \
+        supervisor \
     && rm -rf /var/lib/apt/lists/*
 
 ENV HOME=/root \
@@ -32,6 +33,8 @@ ENV HOME=/root \
     DISPLAY_WIDTH=1024 \
     DISPLAY_HEIGHT=768
 
-COPY rootfs /
+#COPY rootfs /
+COPY app /app
+ENTRYPOINT "/app/entrypoint.sh"
 
-CMD ["xterm"]
+CMD ["bash", "-c", "echo 'Running my app'; sleep infinity"]

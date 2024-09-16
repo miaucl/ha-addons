@@ -45,5 +45,6 @@ ENV HOME=/root \
     RUN_XTERM=yes \
     RUN_FLUXBOX=yes
 COPY ./app /app
-CMD ["/app/entrypoint.sh"]
+ENTRYPOINT "/app/entrypoint.sh"
+#CMD ["bash", "-c", "echo 'Running my app'; sleep infinity"]
 EXPOSE 8080

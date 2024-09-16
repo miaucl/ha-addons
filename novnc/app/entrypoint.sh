@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!/bin/sh
 set -ex
 
 RUN_FLUXBOX=${RUN_FLUXBOX:-yes}

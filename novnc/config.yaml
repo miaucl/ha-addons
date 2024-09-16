@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: noVNC
-version: "1.0.0a11"
+version: "1.0.0a12"
 slug: novnc
 description: GUI of bare debian via noVNC
 panel_icon: "mdi:remote-desktop"
@@ -14,9 +14,6 @@ arch:
 init: false
 ingress: true
 ingress_entry: ingress.html
-# novnc/vnc_lite.html?scale=yes
-#ingress_port: 8080
-#ingress_entry: novnc/vnc.html?resize=remote&path=novnc/websockify
 ports:
   5900/tcp: null
   13011/tcp: 13011

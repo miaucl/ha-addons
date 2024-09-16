@@ -1,0 +1,15 @@
+services:
+  novnc:
+    image: novnc
+    container_name: novnc
+    build:
+      context: .
+      #dockerfile: Dockerfile
+      args:
+        BUILD_FROM: debian:bookworm
+        BUILD_VERSION: local
+    ports:
+      - 8099:8099
+      - 8080:8080
+      - 5901:5901
+      - 13011:13011
