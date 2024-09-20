@@ -1,7 +1,7 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 build_from:
-  aarch64: ghcr.io/zenika/alpine-chrome:123
-  amd64: ghcr.io/zenika/alpine-chrome:123
+  aarch64: ghcr.io/zenika/alpine-chrome:124
+  amd64: ghcr.io/zenika/alpine-chrome:124
 labels:
   org.opencontainers.image.title: "Home Assistant Add-on: Chrome Runner"
   org.opencontainers.image.description: "Chrome runner in headless mode for browser automation."
