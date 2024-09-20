@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv bashio
-# ==============================================================================
-# Start fluxbox service
-# ==============================================================================
-bashio::log.info "Starting fluxbox service..."
-fluxbox

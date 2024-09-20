@@ -1,7 +1,0 @@
-#!/usr/bin/with-contenv bashio
-# ==============================================================================
-# Start xterm service
-# ==============================================================================
-MESSAGE=$(bashio::config 'message')
-bashio::log.info "Starting xterm service..."
-xterm
