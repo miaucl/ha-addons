@@ -10,5 +10,12 @@ LABEL \
   io.hass.type="addon" \
   io.hass.arch="${BUILD_ARCH}"
 
+USER root
 
-CMD ["--no-sandbox", "--remote-debugging-address=0.0.0.0", "--remote-debugging-port=9222"]
+RUN apk add --no-cache socat
+
+USER chrome
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT /entrypoint.sh

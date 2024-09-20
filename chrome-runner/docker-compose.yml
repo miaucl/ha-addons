@@ -5,4 +5,4 @@ services:
     container_name: chrome-runner
     image: chrome-runner
     ports:
-      - 9222:9222
+      - 9222:9223
