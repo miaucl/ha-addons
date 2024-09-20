@@ -12,3 +12,9 @@ Open your browser to: `http://localhost:9222` and then click on the tab you want
 `https://chrome-devtools-frontend.appspot.com/serve_file/@.../inspector.html?ws=localhost:9222/[END]`
 by
 `chrome-devtools://devtools/bundled/inspector.html?ws=localhost:9222/[END]`
+
+### Alternative port forwarding
+
+`socat` has been packaged alongside to forward the traffic and make it available outside of the host (and thus accessible to the integrations).
+
+`socat tcp-listen:9223,reuseaddr,fork tcp:localhost:9222 &`

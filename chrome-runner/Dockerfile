@@ -12,9 +12,9 @@ LABEL \
 
 USER root
 
-RUN apk add --no-cache socat
+RUN apk add --no-cache socat nginx
 
-USER chrome
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 COPY ./entrypoint.sh /entrypoint.sh
 
