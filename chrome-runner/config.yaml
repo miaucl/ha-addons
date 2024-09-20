@@ -13,7 +13,6 @@ arch:
   - amd64
   - armhf
 init: false
-ingress: false
 ports:
   9222/tcp: 9222
 map:
