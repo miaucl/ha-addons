@@ -11,7 +11,6 @@ url: "https://github.com/miaucl/ha-addons/tree/main/chrome-runner"
 arch:
   - aarch64
   - amd64
-  - armhf
 init: false
 ports:
   9222/tcp: 9222
