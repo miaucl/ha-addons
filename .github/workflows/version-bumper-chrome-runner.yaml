@@ -127,4 +127,4 @@ jobs:
         git config user.email "<>"
         git add chrome-runner
         git commit -m "Bump chrome-runner to ``\n - New base image tag (aarch64:${{ steps.latest_aarch64.outputs.latest_tag }}, amd64: ${{ steps.latest_amd64.outputs.latest_tag }})"
-        # git push
+        git push
