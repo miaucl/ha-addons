@@ -7,6 +7,7 @@ on:
 
 jobs:
   check_new_tag:
+    name: Check tag and bump
     runs-on: ubuntu-latest
 
     steps:
@@ -16,11 +17,13 @@ jobs:
 
     # Install yq for parsing the YAML file
     - name: Install yq
-      run: sudo add-apt-repository ppa:rmescandon/yq && sudo apt-get update && sudo apt-get install -y yq
+      run: sudo add-apt-repository ppa:rmescandon/yq && sudo apt-get update && sudo apt-get install -y yq jq
 
     # Extract the current tag from the `build.yaml` file for aarch64 and amd64
     - name: Read current tags from build.yaml
       id: read_tags
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         CURRENT_AARCH64_TAG=$(yq e '.build_from.aarch64' ./chrome-runner/build.yaml | sed 's/.*://')
         CURRENT_AMD64_TAG=$(yq e '.build_from.amd64' ./chrome-runner/build.yaml | sed 's/.*://')
@@ -92,7 +95,7 @@ jobs:
         echo "::set-output name=new_version::$NEW_VERSION"
 
         # Update the version in config.yaml
-        yq e -i ".version = \"$NEW_VERSION\"" config.yaml
+        yq e -i ".version = \"$NEW_VERSION\"" ./chrome-runner/config.yaml
 
     # Update the changelog with the new version and Docker tag change
     - name: Update CHANGELOG
@@ -112,4 +115,4 @@ jobs:
         git config user.email "<>"
         git add chrome-runner
         git commit -m "Bump chrome-runner to ``\n - New base image tag (aarch64:${{ steps.latest_aarch64.outputs.latest_tag }}, amd64: ${{ steps.latest_amd64.outputs.latest_tag }})"
-        git push
+        # git push
