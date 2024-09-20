@@ -1,0 +1,6 @@
+configuration:
+  landing:
+    name: Landing Page
+    description: The initial landing page the browser will connect to on startup.
+network:
+  9222/TCP: The chrome debug port
