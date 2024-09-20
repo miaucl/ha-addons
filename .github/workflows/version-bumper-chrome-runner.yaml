@@ -38,6 +38,7 @@ jobs:
     - name: Check latest tag for aarch64
       id: latest_aarch64
       run: |
+        curl -s -H "Authorization: Bearer $GITHUB_TOKEN" https://ghcr.io/v2/zenika/alpine-chrome/tags/list
         LATEST_TAG=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" https://ghcr.io/v2/zenika/alpine-chrome/tags/list | jq -r '.tags[]' | sort -V | tail -n 1)
 
         # Check if the latest tag is empty
@@ -45,7 +46,7 @@ jobs:
           echo "Error: No tags found or latest tag is empty. Aborting."
           exit 1
         fi
-        
+
         echo "Latest tag: $LATEST_TAG"
         echo "::set-output name=latest_tag::$LATEST_TAG"
 
