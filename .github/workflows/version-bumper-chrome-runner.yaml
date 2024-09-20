@@ -22,8 +22,6 @@ jobs:
     # Extract the current tag from the `build.yaml` file for aarch64 and amd64
     - name: Read current tags from build.yaml
       id: read_tags
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         CURRENT_AARCH64_TAG=$(yq e '.build_from.aarch64' ./chrome-runner/build.yaml | sed 's/.*://')
         CURRENT_AMD64_TAG=$(yq e '.build_from.amd64' ./chrome-runner/build.yaml | sed 's/.*://')
@@ -37,6 +35,8 @@ jobs:
     # Check the latest available tag from ghcr.io for aarch64
     - name: Check latest tag for aarch64
       id: latest_aarch64
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         curl -s -H "Authorization: Bearer $GITHUB_TOKEN" https://ghcr.io/v2/zenika/alpine-chrome/tags/list
         LATEST_TAG=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" https://ghcr.io/v2/zenika/alpine-chrome/tags/list | jq -r '.tags[]' | sort -V | tail -n 1)
