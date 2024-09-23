@@ -1,0 +1,5 @@
+arch:
+  - aarch64
+  - amd64
+filter: ^(\d+\.\d+\.\d+)$
+repo: library/alpine
