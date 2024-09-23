@@ -15,7 +15,7 @@ by
 
 ### Example
 
-Using python and playwright, following snippet leverages the addons capability to serve as a remote web runner. This functionality can be used ad hoc or within an integration of course. The addons requires to be address by its IP, which is why we pre-resolve it in this snipped.
+Using python and playwright, following snippet leverages the addons capability to serve as a remote web runner. This functionality can be used ad hoc or within an integration of course. The addon requires to be addressed by its IP, which is why we pre-resolve it in this snipped.
 
 `pip install playwright`
 
