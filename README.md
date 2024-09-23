@@ -11,7 +11,7 @@ This repository contains the following add-ons
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 
-Chrome GUI allowing for browser automation.
+Chrome GUI for testing and extended browser automation.
 
 ### [Chrome Runner](./chrome-runner)
 

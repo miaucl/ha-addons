@@ -12,6 +12,10 @@ The base container to run this Chrome addon is <https://github.com/jlesage/docke
 
 Since version `108` of chrome (as discussed in those issues [#253](https://github.com/Zenika/alpine-chrome/issues/253), [#225](https://github.com/Zenika/alpine-chrome/issues/225), [#158](https://github.com/Zenika/alpine-chrome/issues/158)), the debug port only accepts connections from localhost. Therefore, `socat` has been packaged alongside to forward the traffic and make it available outside of the host (and thus accessible to the integrations).
 
+### Ingress SSL-Only
+
+To access the ingress page for the GUI, `SSL` is **required** and your server should be accessible over `https`. If you do not have this option, there are two fallback ports which can be opened (go to the Configuration panel), and one for direct access to the noVNC via port `5800` and one for direct access to the xVNC `5900`.
+
 ### IP-Only
 
 The chrome debugging port accepts only IP host headers and no DNS. Therefore, requests must be of the following form `ws://<X.X.X.X>:9222`.

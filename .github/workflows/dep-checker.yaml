@@ -1,130 +1,52 @@
-name: "[chrome] Check deps"
+name: "Check deps"
 
 on:
   schedule:
-    - cron: '0 12 * * *' # Run every day at noon
+    - cron: '0 12 * * 0' # Run every day at noon
   workflow_dispatch: # Allows manual triggering
 
+# Workflow jobs
 jobs:
-  check_new_tag:
-    name: Check tag and bump
+  check_deps:
+    name: Check deps
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository to get access to the build_from file
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    # Install yq for parsing the YAML file
-    - name: Install yq
-      run: sudo add-apt-repository ppa:rmescandon/yq && sudo apt-get update && sudo apt-get install -y yq jq
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
 
-    # Extract the current tag from the `build.yaml` file for aarch64 and amd64
-    - name: Read current tags from build.yaml
-      id: read_tags
-      run: |
-        CURRENT_AARCH64_TAG=$(yq e '.build_from.aarch64' ./chrome-runner/build.yaml | sed 's/.*://')
-        CURRENT_AMD64_TAG=$(yq e '.build_from.amd64' ./chrome-runner/build.yaml | sed 's/.*://')
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-        echo "Current aarch64 tag: $CURRENT_AARCH64_TAG"
-        echo "Current amd64 tag: $CURRENT_AMD64_TAG"
+      # Step 4: Run the Python script
+      - name: Run Python script
+        run: |
+          python update-base-image.py chrome
 
-        echo "::set-output name=current_aarch64::$CURRENT_AARCH64_TAG"
-        echo "::set-output name=current_amd64::$CURRENT_AMD64_TAG"
+      # Step 5: Check if there are any changes
+      - name: Check for changes
+        id: check_for_changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --exit-code || git status --porcelain
 
-    # Check the latest available tag from ghcr.io for aarch64
-    - name: Check latest tag for aarch64
-      id: latest_aarch64
-      run: |
-        LATEST_TAG=$(curl -s "https://registry.hub.docker.com/v2/repositories/zenika/alpine-chrome/tags/" | jq -r '.results[].name'  | grep '^[0-9]\+-' | sed 's/-.*//' | sort -n | tail -n 1)
-
-        # Check if the latest tag is empty
-        if [ -z "$LATEST_TAG" ]; then
-          echo "Error: No tags found or latest tag is empty. Aborting."
-          exit 1
-        fi
-
-        echo "Latest tag: $LATEST_TAG"
-        echo "::set-output name=latest_tag::$LATEST_TAG"
-
-    # Compare the tags for aarch64
-    - name: Compare aarch64 tags
-      if: steps.latest_aarch64.outputs.latest_tag != steps.read_tags.outputs.current_aarch64
-      run: |
-        echo "New tag available for aarch64: ${{ steps.latest_aarch64.outputs.latest_tag }}"
-
-    # Check the latest available tag for amd64
-    - name: Check latest tag for amd64
-      id: latest_amd64
-      run: |
-        LATEST_TAG=$(curl -s "https://registry.hub.docker.com/v2/repositories/zenika/alpine-chrome/tags/" | jq -r '.results[].name'  | grep '^[0-9]\+-' | sed 's/-.*//' | sort -n | tail -n 1)
-
-        # Check if the latest tag is empty
-        if [ -z "$LATEST_TAG" ]; then
-          echo "Error: No tags found or latest tag is empty. Aborting."
-          exit 1
-        fi
-
-        echo "Latest tag: $LATEST_TAG"
-        echo "::set-output name=latest_tag::$LATEST_TAG"
-
-    # Compare the tags for amd64
-    - name: Compare amd64 tags
-      if: steps.latest_amd64.outputs.latest_tag != steps.read_tags.outputs.current_amd64
-      run: |
-        echo "New tag available for amd64: ${{ steps.latest_amd64.outputs.latest_tag }}"
-
-    # Update the `build.yaml` file with the new tag if a newer one is found (for auto-updating)
-    - name: Update build.yaml file
-      id: update_build
-      if: steps.latest_aarch64.outputs.latest_tag != steps.read_tags.outputs.current_aarch64 || steps.latest_amd64.outputs.latest_tag != steps.read_tags.outputs.current_amd64
-      run: |
-        sed -i "s/aarch64: .*/aarch64: ghcr.io\/zenika\/alpine-chrome:${{ steps.latest_aarch64.outputs.latest_tag }}/" ./chrome-runner/build.yaml
-        sed -i "s/amd64: .*/amd64: ghcr.io\/zenika\/alpine-chrome:${{ steps.latest_amd64.outputs.latest_tag }}/" ./chrome-runner/build.yaml
-
-    # Extract the current version from config.yaml
-    - name: Read current version from config.yaml
-      id: read_version
-      run: |
-        CURRENT_VERSION=$(yq e '.version' ./chrome-runner/config.yaml | sed 's/"//g')
-        echo "Current version: $CURRENT_VERSION"
-        echo "::set-output name=current_version::$CURRENT_VERSION"
-
-      # Bump the minor version in the config.yaml file
-    - name: Bump minor version
-      id: bump_version
-      run: |
-        # Extract major, minor, patch version
-        MAJOR=$(echo "${{ steps.read_version.outputs.current_version }}" | cut -d. -f1)
-        MINOR=$(echo "${{ steps.read_version.outputs.current_version }}" | cut -d. -f2)
-        PATCH=$(echo "${{ steps.read_version.outputs.current_version }}" | cut -d. -f3 | sed 's/[a-zA-Z].*//')
-
-        # Bump the minor version
-        NEW_MINOR=$((MINOR+1))
-        NEW_VERSION="${MAJOR}.${NEW_MINOR}.0"
-
-        echo "New version: $NEW_VERSION"
-        echo "::set-output name=new_version::$NEW_VERSION"
-
-        # Update the version in config.yaml
-        yq e -i ".version = \"$NEW_VERSION\"" ./chrome-runner/config.yaml
-
-    # Update the changelog with the new version and Docker tag change
-    - name: Update CHANGELOG
-      if: steps.latest_aarch64.outputs.latest_tag != steps.read_tags.outputs.current_aarch64 && steps.latest_amd64.outputs.latest_tag != steps.read_tags.outputs.current_amd64
-      run: |
-        NEW_ENTRY="## $NEW_VERSION\n\n- Update base image tags to (aarch64:${{ steps.latest_aarch64.outputs.latest_tag }} amd64:${{ steps.latest_amd64.outputs.latest_tag }})\n\n"
-          
-        # Prepend the new entry to the CHANGELOG
-        { echo -e "$NEW_ENTRY"; cat ./chrome-runner/CHANGELOG.md; } > changelog_temp.md && mv changelog_temp.md ./chrome-runner/CHANGELOG.md
-
-
-    # Commit and push the updated `build.yaml`, `config.yaml` and `CHANGELOG.md` file
-    - name: Commit changes
-      if: steps.latest_aarch64.outputs.latest_tag != steps.read_tags.outputs.current_aarch64 && steps.latest_amd64.outputs.latest_tag != steps.read_tags.outputs.current_amd64 && steps.bump_version.outputs.new_version
-      run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
-        git add chrome-runner
-        git commit -m "Bump chrome-runner to ``\n - New base image tag (aarch64:${{ steps.latest_aarch64.outputs.latest_tag }}, amd64: ${{ steps.latest_amd64.outputs.latest_tag }})"
-        git push
+      # Step 6: Commit and push the changes, if any
+      - name: Commit changes
+        if: success() && steps.check_for_changes.outputs.exit_code != '0'
+        run: |
+          git add .
+          git commit -m "🤖 dependency update"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

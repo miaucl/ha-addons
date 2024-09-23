@@ -1,4 +1,4 @@
 network:
   5800/tcp: Chrome via Web (Not required for Ingress)
   5900/tcp: Chrome via VNC (Not required for Ingress)
-  9222/TCP: The chrome debug port
+  9222/tcp: The chrome debug port
