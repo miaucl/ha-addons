@@ -1,5 +1,5 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-ARG BUILD_FROM="zenika/alpine-chrome:latest"
+ARG BUILD_FROM="alpine:3.20"
 ARG BUILD_ARCH=unknown
 ARG BUILD_VERSION=dev
 
@@ -10,12 +10,32 @@ LABEL \
   io.hass.type="addon" \
   io.hass.arch="${BUILD_ARCH}"
 
-USER root
+# Installs latest Chromium package.
+RUN apk upgrade --no-cache --available \
+    && apk add --no-cache \
+      chromium-swiftshader \
+      ttf-freefont \
+      font-noto-emoji \
+      socat \
+    && apk add --no-cache \
+      --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+      font-wqy-zenhei
 
-RUN apk add --no-cache socat
+COPY local.conf /etc/fonts/local.conf
 
+# Add Chrome as a user
+RUN mkdir -p /usr/src/app \
+    && adduser -D chrome \
+    && chown -R chrome:chrome /usr/src/app
+# Run Chrome as non-privileged
 USER chrome
+WORKDIR /usr/src/app
+
+ENV CHROME_BIN=/usr/bin/chromium-browser \
+    CHROME_PATH=/usr/lib/chromium/
+
 
 COPY ./entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT /entrypoint.sh
+    

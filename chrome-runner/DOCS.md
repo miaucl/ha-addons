@@ -4,18 +4,13 @@ Source Documentation is found here: <https://github.com/Zenika/alpine-chrome>
 
 ## How to use
 
---> Using the devtools setup of the [Zenika/alpine-chrome README.md](https://github.com/Zenika/alpine-chrome?tab=readme-ov-file#use-the-devtools).
+This addon is only useful, if you want to automate something using tools such as [playwright](https://playwright.dev) or [selenium](https://www.selenium.dev), which use the exposed debug port on port `9222`.
 
-An equivalent of following command is launched: `docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 https://www.chromestatus.com/`
+To see, if the debug port is correctly exposed and accessible, open following url in the browser `http://<your-homeserver-url>:9222/json/version`, which should provide information about the protocol.
 
-Open your browser to: `http://localhost:9222` and then click on the tab you want to inspect. Replace the beginning
-`https://chrome-devtools-frontend.appspot.com/serve_file/@.../inspector.html?ws=localhost:9222/[END]`
-by
-`chrome-devtools://devtools/bundled/inspector.html?ws=localhost:9222/[END]`
+### Playwright Example
 
-### Example
-
-Using python and playwright, following snippet leverages the addons capability to serve as a remote web runner. This functionality can be used ad hoc or within an integration of course. The addon requires to be addressed by its IP, which is why we pre-resolve it in this snipped.
+Using python and playwright, following snippet leverages the addons capability to serve as a remote web runner. This functionality can be used ad hoc or within an integration of course. The addon requires to be addressed by its IP [see limitation](https://github.com/miaucl/ha-addons/tree/main/chrome-runner#ip-only), which is why we pre-resolve it in this snipped.
 
 `pip install playwright`
 

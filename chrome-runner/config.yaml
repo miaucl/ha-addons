@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Chrome Runner
-version: "1.0.0"
+version: "2.0.0a0"
 slug: chrome_runner
 description: Chrome runner in headless mode for browser automation
 panel_icon: "mdi:google-chrome"
@@ -15,11 +15,5 @@ ports:
   9223/tcp: 9222
 map:
   - share:rw
-  - type: data
-    path: /config
 tmpfs: true
-options:
-  landing: "https://www.chromestatus.com/"
-schema:
-  landing: "str?"
 image: "ghcr.io/miaucl/{arch}-chrome-runner"
