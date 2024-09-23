@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Chrome
-version: "1.0.0a1"
+version: "1.0.0a2"
 slug: chrome
 description: Chrome GUI allowing for browser automation.
 panel_icon: "mdi:google-chrome"
@@ -11,6 +11,7 @@ arch:
   - aarch64
   - amd64
 init: false
+apparmor: false
 ingress: true
 ingress_port: 5800
 ports:
@@ -23,7 +24,5 @@ environment:
   KEEP_APP_RUNNING: "1"
 map:
   - share:rw
-  - type: data
-    path: /config
 tmpfs: true
 image: "ghcr.io/miaucl/{arch}-chrome"
