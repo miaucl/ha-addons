@@ -25,9 +25,11 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
+          
       # Step 4: Run the Python script
       - name: Run Python script
         run: |
@@ -50,9 +52,19 @@ jobs:
       - name: Commit and push changes
         if: steps.check_changes.outcome == 'failure'
         run: |
+          git checkout -b dep-checker-$(date +%Y%m%d%H%M%S)
           git add .
           git commit -m "🤖 dependency update"
-          git push
+          git push origin HEAD
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Step 8: Create a Pull Request and enable auto-merge
+      - name: create pull request
+        if: steps.check_changes.outcome == 'failure'
+        run: |
+          gh pr create -B main -H dep-checker-$(date +%Y%m%d%H%M%S) --title '🤖 dependency update $(date +%Y%m%d%H%M%S)' --body 'This PR contains automated changes made by the 🤖 dep-checker workflow.'
+          PR_NUMBER=$(gh pr view --json number -q ".number")
+          gh pr merge $PR_NUMBER --auto --squash
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
