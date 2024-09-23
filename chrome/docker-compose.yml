@@ -1,0 +1,9 @@
+services:
+  chrome:
+    build:
+      context: .
+    container_name: chrome
+    image: chrome
+    ports:
+      - 5800:5800
+      - 9222:9223
