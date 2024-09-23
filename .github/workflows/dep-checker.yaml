@@ -34,6 +34,9 @@ jobs:
       - name: Run Python script
         run: |
           python update-base-image.py chrome
+          python update-base-image.py chrome-runner
+          python update-deps.py chrome
+          python update-deps.py chrome-runner
 
       # Step 5: Configure Git
       - name: Configure Git
@@ -64,7 +67,7 @@ jobs:
         if: steps.check_changes.outcome == 'failure'
         run: |
           BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-          gh pr create --base main --head $BRANCH_NAME --title '🤖 dependency update $(date +%Y%m%d%H%M%S)' --body 'This PR contains automated changes made by the 🤖 dep-checker workflow.'
+          gh pr create --base main --head $BRANCH_NAME --title '🤖 dependency update' --body 'This PR contains automated changes made by the 🤖 dep-checker workflow.'
           PR_NUMBER=$(gh pr view --json number -q ".number")
           gh pr merge $PR_NUMBER --auto --squash
         env:
