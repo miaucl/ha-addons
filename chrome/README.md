@@ -8,7 +8,7 @@
 
 ## Base container
 
-The base container to run this Chrome addon is <https://github.com/jlesage/docker-baseimage-gui>, which allows to run (almost) any X capable application in a container. Props to [@jlesage](https://github.com/jlesage)!
+The base container to run this Chrome addon is <https://github.com/jlesage/docker-baseimage-gui>, which allows to run (almost) any X capable application in a container and expose the gui via a noVNC int the browser. Props to [@jlesage](https://github.com/jlesage)!
 
 
 
