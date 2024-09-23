@@ -107,7 +107,7 @@ def increment_config_version():
 
 # Function to add an entry to the CHANGELOG.md
 def update_changelog(new_config_version, repo_name, new_tag):
-    changelog_entry = f"## {new_config_version}\n\n- Updated base image of addon to {repo_name}:{new_tag}\n\n"
+    changelog_entry = f"## {new_config_version}\n\n- Update base image of addon to {repo_name}:{new_tag}\n\n"
     try:
         with open(CHANGELOG_PATH, "r+") as file:
             content = file.read()

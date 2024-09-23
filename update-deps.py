@@ -135,7 +135,7 @@ def increment_config_version():
 def update_changelog(new_config_version, apk_versions):
     apk_entries = "\n".join(
         [
-            (f"- Updated apk package '{apk}' in addon to: {version}")
+            (f"- Update apk package '{apk}' in addon to: {version}")
             for apk, version in apk_versions
         ]
     )
