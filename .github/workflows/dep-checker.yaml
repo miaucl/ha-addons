@@ -43,10 +43,10 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git diff --exit-code || echo "changes"
+          git diff --exit-code
         continue-on-error: true
 
-      # Step 7: Commit and push changes if there are any
+      # Step 7: Commit and push changes if there are any (failure means, the git index is not clean and there are changes to commit)
       - name: Commit and push changes
         if: steps.check_changes.outcome == 'failure'
         run: |
