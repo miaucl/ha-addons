@@ -24,5 +24,4 @@ environment:
   KEEP_APP_RUNNING: "1"
 map:
   - share:rw
-tmpfs: true
 image: "ghcr.io/miaucl/{arch}-chrome"
