@@ -1,5 +1,24 @@
 #!/bin/sh
 
+# Symbolic links for persistent storage on HA
+if [ ! -d "/data" ]; then
+  mkdir -p /data
+fi
+
+if [ ! -d "/data/profile" ]; then
+  mv /config/profile /data
+else
+  rm -rf /config/profile
+fi
+ln -s /data/profile /config/profile
+
+if [ ! -d "/share/chromium" ]; then
+  mkdir -p /share/chromium
+fi
+rm -rf /config/downloads
+
+ln -s /share/chromium /config/downloads
+
 # Cleanup
 if ! pgrep chromium > /dev/null;then
   rm -f $HOME/.config/chromium/Singleton*
