@@ -1,0 +1,5 @@
+arch:
+  - aarch64
+  - amd64
+filter: ^alpine-3\.20-v(\d+\.\d+\.\d+)$
+repo: jlesage/baseimage-gui

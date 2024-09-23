@@ -8,23 +8,7 @@
 
 ## Base container
 
-The base container to run this Chrome addon is <https://github.com/jlesage/docker-baseimage-gui> by [@jlesage](https://github.com/jlesage), which allows to run (almost) any X capable application in a container and expose the gui via noVNC int the browser. A huge thank to him for the great containers created and maintained. He's the real hero who needs to be [supported](https://github.com/sponsors/jlesage).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-This addon repackages the image `ghcr.io/zenika/alpine-chrome` from [Zenika/alpine-chrome](https://github.com/Zenika/alpine-chrome) as a home assistant addon.
+The base container to run this Chrome addon is <https://github.com/jlesage/docker-baseimage-gui> by [@jlesage](https://github.com/jlesage), which allows to run (almost) any X capable application in a container and expose the gui via noVNC in the browser. A huge thank to him for the great containers created and maintained. He's the real hero who needs to be [supported](https://github.com/sponsors/jlesage).
 
 Since version `108` of chrome (as discussed in those issues [#253](https://github.com/Zenika/alpine-chrome/issues/253), [#225](https://github.com/Zenika/alpine-chrome/issues/225), [#158](https://github.com/Zenika/alpine-chrome/issues/158)), the debug port only accepts connections from localhost. Therefore, `socat` has been packaged alongside to forward the traffic and make it available outside of the host (and thus accessible to the integrations).
 

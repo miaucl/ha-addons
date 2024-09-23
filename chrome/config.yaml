@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Chrome
-version: "1.0.0a6"
+version: "1.0.0a7"
 slug: chrome
 description: Chrome GUI allowing for browser automation.
 panel_icon: "mdi:google-chrome"
@@ -25,3 +25,13 @@ environment:
 map:
   - share:rw
 image: "ghcr.io/miaucl/{arch}-chrome"
+legacy: true
+options:
+  VNC_PASSWORD: ""
+  SECURE_CONNECTION: "0"
+  SECURE_CONNECTION_VNC_METHOD: "SSL"
+  SECURE_CONNECTION_CERTS_CHECK_INTERVAL: "60"
+schema:
+  SECURE_CONNECTION: str
+  SECURE_CONNECTION_VNC_METHOD: str
+  SECURE_CONNECTION_CERTS_CHECK_INTERVAL: str
