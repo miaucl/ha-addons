@@ -83,9 +83,17 @@ def should_update(stored_version, installed_version, bump_type):
         #
         if bump_type == "major" and installed_semver.major > stored_semver.major:
             return True
-        elif bump_type == "minor" and installed_semver.minor > stored_semver.minor:
+        elif bump_type == "minor" and (
+            installed_semver.major > stored_semver.major
+            or installed_semver.minor > stored_semver.minor
+        ):
             return True
-        elif bump_type == "patch" and installed_semver.patch > stored_semver.patch:
+        elif (
+            bump_type == "patch"
+            and installed_semver.major > stored_semver.major
+            or installed_semver.minor > stored_semver.minor
+            or installed_semver.patch > stored_semver.patch
+        ):
             return True
         return False
     except ValueError as e:
