@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Chromium Runner
-version: "3.0.0b0"
+version: "3.0.0b1"
 slug: chromium_runner
 description: Chromium runner in headless mode for browser automation
 panel_icon: "mdi:google-chrome"
