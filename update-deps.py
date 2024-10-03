@@ -41,7 +41,7 @@ def get_apk_version(package_name, arch, repo):
 
             # Find the specific table cell containing the version number
             version_cell = soup.find("th", string="Version").find_next_sibling("td")
-            version = version_cell.find("a").text.strip()
+            version = version_cell.text.strip()
 
             if version:
                 print(f"Latest version of {package_name}: {version}")
