@@ -1,4 +1,4 @@
-# Home Assistant Add-on: Chrome Runner
+# Home Assistant Add-on: Chromium Runner
 
 Source Documentation is found here: <https://github.com/Zenika/alpine-chrome>
 
@@ -10,7 +10,7 @@ To see, if the debug port is correctly exposed and accessible, open following ur
 
 ### Playwright Example
 
-Using python and playwright, following snippet leverages the addons capability to serve as a remote web runner. This functionality can be used ad hoc or within an integration of course. The addon requires to be addressed by its IP [see limitation](https://github.com/miaucl/ha-addons/tree/main/chrome-runner#ip-only), which is why we pre-resolve it in this snipped.
+Using python and playwright, following snippet leverages the addons capability to serve as a remote web runner. This functionality can be used ad hoc or within an integration of course. The addon requires to be addressed by its IP [see limitation](https://github.com/miaucl/ha-addons/tree/main/chromium-runner#ip-only), which is why we pre-resolve it in this snipped.
 
 `pip install playwright`
 
