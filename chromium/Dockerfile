@@ -10,7 +10,7 @@ LABEL \
   io.hass.type="addon" \
   io.hass.arch="${BUILD_ARCH}"
 
-# Install chrome and socat
+# Install chromium and socat
 RUN apk upgrade --no-cache --available \
   && apk add --no-cache \
     chromium-swiftshader \
@@ -27,4 +27,4 @@ COPY local.conf /etc/fonts/local.conf
 COPY startapp.sh /startapp.sh
 
 # Set the name of the application.
-RUN set-cont-env APP_NAME "Chrome"
+RUN set-cont-env APP_NAME "Chromium"

@@ -23,12 +23,12 @@ RUN apk upgrade --no-cache --available \
 
 COPY local.conf /etc/fonts/local.conf
 
-# Add Chrome as a user
+# Add Chromium as a user
 RUN mkdir -p /usr/src/app \
-    && adduser -D chrome \
-    && chown -R chrome:chrome /usr/src/app
-# Run Chrome as non-privileged
-USER chrome
+    && adduser -D chromium \
+    && chown -R chromium:chromium /usr/src/app
+# Run Chromium as non-privileged
+USER chromium
 WORKDIR /usr/src/app
 
 ENV CHROME_BIN=/usr/bin/chromium-browser \

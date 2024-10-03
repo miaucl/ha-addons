@@ -1,12 +1,12 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
-name: Chrome Runner
-version: "2.0.0"
-slug: chrome_runner
-description: Chrome runner in headless mode for browser automation
+name: Chromium Runner
+version: "3.0.0b1"
+slug: chromium_runner
+description: Chromium runner in headless mode for browser automation
 panel_icon: "mdi:google-chrome"
 panel_admin: false
 codenotary: cyrill.raccaud+ha@gmail.com
-url: "https://github.com/miaucl/ha-addons/tree/main/chrome-runner"
+url: "https://github.com/miaucl/ha-addons/tree/main/chromium-runner"
 arch:
   - aarch64
   - amd64
@@ -16,4 +16,4 @@ ports:
 map:
   - share:rw
 tmpfs: true
-image: "ghcr.io/miaucl/{arch}-chrome-runner"
+image: "ghcr.io/miaucl/{arch}-chromium-runner"

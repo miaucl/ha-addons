@@ -1,0 +1,4 @@
+network:
+  5800/tcp: Chromium via Web (Not required for Ingress)
+  5900/tcp: Chromium via VNC (Not required for Ingress)
+  9222/tcp: The chromium debug port

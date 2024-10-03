@@ -33,10 +33,10 @@ jobs:
       # Step 4: Run the Python script
       - name: Run Python script
         run: |
-          python update-base-image.py chrome
-          python update-base-image.py chrome-runner
-          python update-deps.py chrome
-          python update-deps.py chrome-runner
+          python update-base-image.py chromium
+          python update-base-image.py chromium-runner
+          python update-deps.py chromium
+          python update-deps.py chromium-runner
 
       # Step 5: Configure Git
       - name: Configure Git
