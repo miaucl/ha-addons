@@ -2,7 +2,7 @@ name: "Check deps"
 
 on:
   schedule:
-    - cron: '0 12 * * 0' # Run every day at noon
+    - cron: '0 12 * * 0' # Run every Sunday at 12:00 PM (noon)
   workflow_dispatch: # Allows manual triggering
 
 # Workflow jobs
