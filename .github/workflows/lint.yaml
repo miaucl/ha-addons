@@ -9,6 +9,7 @@ on:
       - main
   schedule:
     - cron: "0 0 * * *" # Run every day at midnight (12:00 AM)
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   find:
