@@ -7,14 +7,17 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    - cron: "0 0 * * *" # Run every day at midnight (12:00 AM)
+    types:
+      - labeled
   workflow_dispatch: # Allows manual triggering
 
 jobs:
   find:
     name: Find add-ons
     runs-on: ubuntu-latest
+    if: >
+      github.event.label == null || 
+      github.event.label.name == 'manual run'
     outputs:
       addons: ${{ steps.addons.outputs.addons_list }}
     steps:
