@@ -11,12 +11,17 @@ on:
   pull_request:
     branches:
       - main
+    types:
+      - labeled
   workflow_dispatch: # Allows manual triggering
 
 jobs:
   init:
     runs-on: ubuntu-latest
     name: Initialize builds
+    if: >
+      github.event.label == null || 
+      github.event.label.name == 'manual run'
     outputs:
       changed_addons: ${{ steps.changed_addons.outputs.addons }}
       changed: ${{ steps.changed_addons.outputs.changed }}
