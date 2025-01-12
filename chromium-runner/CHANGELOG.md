@@ -1,3 +1,7 @@
+## 3.4.0
+
+- Update base image of addon to library/alpine:3.21.2
+
 ## 3.3.0
 
 - Update base image of addon to library/alpine:3.21.0
