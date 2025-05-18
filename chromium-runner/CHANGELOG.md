@@ -1,3 +1,7 @@
+## 3.10.0
+
+- Update apk package 'chromium' in addon to: 136.0.7103.113-r0
+
 ## 3.9.0
 
 - Update apk package 'chromium' in addon to: 135.0.7049.52-r0
