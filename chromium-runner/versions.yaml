@@ -1,4 +1,4 @@
 chromium:
   apk: chromium-swiftshader
   bump: major
-  version: 136.0.7103.113-r0
+  version: 137.0.7151.55-r0
