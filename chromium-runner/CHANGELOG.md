@@ -1,3 +1,7 @@
+## 3.18.0
+
+- Update base image of addon to library/alpine:3.22.2
+
 ## 3.17.0
 
 - Update apk package 'chromium' in addon to: 141.0.7390.54-r0
