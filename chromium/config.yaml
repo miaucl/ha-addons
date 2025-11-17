@@ -2,7 +2,6 @@ apparmor: false
 arch:
 - aarch64
 - amd64
-codenotary: cyrill.raccaud+ha@gmail.com
 description: Chromium GUI for testing and extended browser automation
 environment:
   KEEP_APP_RUNNING: '1'

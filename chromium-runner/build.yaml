@@ -1,9 +1,6 @@
 build_from:
   aarch64: library/alpine:3.22.2
   amd64: library/alpine:3.22.2
-codenotary:
-  base_image: notary@home-assistant.io
-  signer: cyrill.raccaud+ha@gmail.com
 labels:
   org.opencontainers.image.description: Chromium runner in headless mode for browser
     automation
