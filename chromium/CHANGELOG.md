@@ -1,3 +1,7 @@
+## 2.20.0
+
+- Update base image of addon to jlesage/baseimage-gui:4.10.0
+
 ## 2.19.0
 
 - Update apk package 'chromium' in addon to: 142.0.7444.134-r0
