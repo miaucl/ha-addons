@@ -14,4 +14,4 @@ ports:
 slug: chromium_runner
 tmpfs: true
 url: https://github.com/miaucl/ha-addons/tree/main/chromium-runner
-version: 3.23.0
+version: 3.24.0
