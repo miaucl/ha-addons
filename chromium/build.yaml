@@ -1,6 +1,6 @@
 build_from:
-  aarch64: jlesage/baseimage-gui:alpine-3.20-v4.10.7
-  amd64: jlesage/baseimage-gui:alpine-3.20-v4.10.7
+  aarch64: jlesage/baseimage-gui:alpine-3.20-v4.11.0
+  amd64: jlesage/baseimage-gui:alpine-3.20-v4.11.0
 labels:
   org.opencontainers.image.description: Chromium GUI for testing and extended browser
     automation
