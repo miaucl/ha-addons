@@ -1,3 +1,7 @@
+## 2.29.0
+
+- Update base image of addon to jlesage/baseimage-gui:4.11.2
+
 ## 2.28.0
 
 - Update base image of addon to jlesage/baseimage-gui:4.11.1

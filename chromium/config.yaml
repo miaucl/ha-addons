@@ -21,4 +21,4 @@ ports:
   9223/tcp: 9222
 slug: chromium
 url: https://github.com/miaucl/ha-addons/tree/main/chromium
-version: 2.28.0
+version: 2.29.0
